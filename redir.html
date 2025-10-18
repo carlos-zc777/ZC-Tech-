@@ -63,7 +63,7 @@
         .then(res => res.json())
         .then(data => {
           document.getElementById("supportBtn").onclick = () => {
-            window.location.href = data.corto;
+            window.location.href = data.short;
           };
           document.getElementById("directBtn").onclick = () => {
             window.location.href = data.original;
