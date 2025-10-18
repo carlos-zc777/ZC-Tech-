@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirección ZC Tech</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 1rem;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .btn {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 200px;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .support {
+      background: linear-gradient(90deg, #f43f5e, #ec4899);
+      color: white;
+    }
+    .direct {
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Elige cómo continuar 🚀</h1>
+  <button id="supportBtn" class="btn support">Apoyar</button>
+  <button id="directBtn" class="btn direct">Ir directo</button>
+
+  <script>
+    // Tomamos el parámetro "link" de la URL
+    const params = new URLSearchParams(window.location.search);
+    const originalLink = params.get("link");
+
+    if (!originalLink) {
+      document.body.innerHTML = "<h1>❌ Falta el parámetro 'link'</h1>";
+    } else {
+      // Llamamos a la API /api/shorten en tu proyecto de Vercel
+      fetch(`/api/shorten?link=${encodeURIComponent(originalLink)}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("supportBtn").onclick = () => {
+            window.location.href = data.corto;
+          };
+          document.getElementById("directBtn").onclick = () => {
+            window.location.href = data.original;
+          };
+        })
+        .catch(() => {
+          document.body.innerHTML = "<h1>⚠️ Error al conectar con el acortador</h1>";
+        });
+    }
+  </script>
+</body>
+</html>

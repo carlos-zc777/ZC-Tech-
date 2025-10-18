@@ -1,0 +1,24 @@
+/* Este archivo contiene los estilos personalizados para la página de Mega ZC World. */
+
+body {
+    /* Define la fuente principal para toda la página. */
+    font-family: 'Inter', sans-serif;
+}
+
+.gradient-bg {
+    /* Crea el fondo con un degradado de azul oscuro a un azul más claro. */
+    background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+}
+
+.card-hover-effect {
+    /* Prepara las tarjetas para una transición suave. */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+    /* Efecto que eleva la tarjeta y le añade una sombra más pronunciada al pasar el ratón por encima. */
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+
